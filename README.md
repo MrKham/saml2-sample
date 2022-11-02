@@ -65,5 +65,12 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 # saml2-sample
+## Config Samle
+    Using OneLogin
+    Add SSO environment
+        SAML2_TEST_SP_ENTITYID=
+        SAML2_TEST_IDP_SSO_URL=
+        SAML2_TEST_IDP_SL_URL=
+        SAML2_TEST_IDP_x509=
 # saml2-sample
 # saml2-sample

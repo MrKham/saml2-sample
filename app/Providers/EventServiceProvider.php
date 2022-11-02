@@ -37,7 +37,7 @@ class EventServiceProvider extends ServiceProvider
                 'attributes' => $user->getAttributes(),
                 'assertion' => $user->getRawSamlAssertion()
             ];
-            dd($user);
+            dd($userData);
         });
     }
 

@@ -61,16 +61,30 @@ In order to ensure that the Laravel community is welcoming to all, please review
 
 If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
 
-## License
+# Config saml2
+## Define the IDPs
+### config/saml2_settings.php
+    'idpNames' => ['mytestidp1', 'test', 'myidp2'],
+### Configure laravel-saml2 to know about each IDP
+    You will need to create a separate configuration file for each IDP under app/config/saml2/ folder. 
+    e.g. test_idp_settings.php. You can use mytestidp1_idp_settings.php as the starting point; just copy it and rename it.
+## Add environment Saml2 in .env
+    `$this_idp_env_id` in file test_idp_settings.php
+    entityId: 
+        Key: 'SAML2_'.$this_idp_env_id.'_IDP_ENTITYID'
+    
+    singleSignOnService:
+        Key: 'SAML2_'.$this_idp_env_id.'_IDP_SSO_URL'
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
-# saml2-sample
-## Config Samle
-    Using OneLogin
-    Add SSO environment
-        SAML2_TEST_SP_ENTITYID=
-        SAML2_TEST_IDP_SSO_URL=
-        SAML2_TEST_IDP_SL_URL=
-        SAML2_TEST_IDP_x509=
-# saml2-sample
-# saml2-sample
+    singleLogoutService:
+        Key: 'SAML2_'.$this_idp_env_id.'_IDP_SL_URL'
+    
+    x509cert:
+        Key: 'SAML2_'.$this_idp_env_id.'_IDP_x509'
+## URLs To Pass to The IDP configuration
+- {routesPrefix}/{idpName}/logout
+- {routesPrefix}/{idpName}/login
+- {routesPrefix}/{idpName}/metadata
+- {routesPrefix}/{idpName}/acs
+- {routesPrefix}/{idpName}/sls
+
